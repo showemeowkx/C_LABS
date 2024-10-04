@@ -5,23 +5,26 @@ int main(void) {
 
     double P=1;
     double p=0;
+    int ct=0;
     int n;
     int i;
 
     printf("Welcome again! Input n: ");
     scanf("%i", &n);
 
-    if (n<0) {
-        printf("Error: n should be greater or equal to 0!\n");
+    if (n<=0) {
+        printf("Error: n should be greater than 0!\n");
     }
     else {
         for (i=1; i<=n; i++) {
             p+=i+sin(i);
             P*=((i*i)+1)/p;
+            ct+=10;
         }
+        printf("Result: %.7lf\n", P);
     }
-
-    printf("Result: %.7lf", P);
+    ct+=1;
+    printf("Operations quantity: %i\n", ct);
 
     return 0;
 }
