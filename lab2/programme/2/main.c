@@ -24,7 +24,7 @@ int main(void) {
         printf("Result: %.7lf\n", P);
     }
     ct+=1;
-    printf("Operations quantity: %i\n", ct);
+    printf("Operations done: %i\n", ct);
 
     return 0;
 }

@@ -6,9 +6,9 @@ int main(void) {
     double P=1;
     double p=0;
     int ct = 0;
+    int j=1;
     int n;
     int i;
-    int j;
 
     printf("Welcome! Input n: ");
     scanf("%i", &n);
@@ -30,7 +30,7 @@ int main(void) {
         printf("Result: %.7lf\n", P);
     }
     ct+=1;
-    printf("Operations quantity: %i\n", ct);
+    printf("Operations done: %i\n", ct);
 
     return 0;
 }
