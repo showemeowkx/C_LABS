@@ -3,8 +3,8 @@
 
 int main(void) {
 
-    double P=1;
-    double p=0;
+    double product=1;
+    double sum=0;
     int ct=0;
     int n;
     int i;
@@ -17,13 +17,13 @@ int main(void) {
     }
     else {
         for (i=1; i<=n; i++) {
-            p+=i+sin(i);
-            P*=((i*i)+1)/p;
+            sum+=i+sin(i);
+            product*=((i*i)+1)/sum;
             ct+=10;
         }
-        printf("Result: %.7lf\n", P);
+        printf("Result: %.7lf\n", product);
     }
-    ct+=1;
+    ct+=2;
     printf("Operations done: %i\n", ct);
 
     return 0;
