@@ -23,7 +23,7 @@ int main(void) {
         }
         printf("Result: %.7lf\n", product);
     }
-    ct+=2;
+    ct+=7;
     printf("Operations done: %i\n", ct);
 
     return 0;
