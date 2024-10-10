@@ -26,10 +26,10 @@ int main(void) {
             product*=((i*i)+1)/sum;
             ct+=9;
         }
-        
+        ct+=1;
         printf("Result: %.7lf\n", product);
     }
-    ct+=8;
+    ct+=4;
     printf("Operations done: %i\n", ct);
 
     return 0;
