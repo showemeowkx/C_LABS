@@ -2,43 +2,67 @@
 
 void linearSearch(double inputMatrix[7][7]){
     int i;
-    int num1[2]={};
-    int num2[2]={};
+    int num1ID;
+    int num2ID;
+    double num1;
+    double num2;
     double mainDiagonale[7]={};
     // double outputMatrix[7][7]=inputMatrix[7][7];
 
     for (i=0; i<7; i++){
-        // printf("i: %d\n", i);
-        // printf("matrix element: %lf\n", inputMatrix[i][i]);
-        mainDiagonale[i]=inputMatrix[i][i];
-    }
-
-    for (i=0; i<7; i++){
-        if(mainDiagonale[i]>0){
-            num1[0]=i;
-            num1[1]=mainDiagonale[i];
+        if (inputMatrix[i][i]>0) {
+            num1=inputMatrix[i][i];
+            num1ID=i;
             break;
         }
-    }
-
+    }    
     for (i=6; i>=0; i--){
-        if(mainDiagonale[i]<0) {
-            num2[0]=i;
-            num2[1]=mainDiagonale[i];
+        if (inputMatrix[i][i]<0){
+            num2=inputMatrix[i][i];
+            num2ID=i;
             break;
         }
     }
 
-    if (num1[0]&&num1[1]&&num2[0]&&num2[1]) {
-        mainDiagonale[num1[0]]=num2[1];
-        mainDiagonale[num2[0]]=num1[1];
+    if (num1&&num2) {
+        inputMatrix[num1ID][num1ID]=num2;
+        inputMatrix[num2ID][num2ID]=num1;
+        printf("\nmain diagonale:\n");
+        for (i=0; i<7; i++){
+            printf("%lf ", inputMatrix[i][i]);
+        }
     }
+    else printf("error");
 
-    printf("\nmain diagonale:\n");
-    for (i=0; i<7; i++){
-        printf("%.2lf ", mainDiagonale[i]);
-    }
-    // printf("num1: %.2lf\nnum2:%.2lf\n", num1[1], num2[1]);
+    // for (i=0; i<7; i++){
+    //     // printf("i: %d\n", i);
+    //     // printf("matrix element: %lf\n", inputMatrix[i][i]);
+    //     mainDiagonale[i]=inputMatrix[i][i];
+    // }
+
+    // for (i=0; i<7; i++){
+    //     if(mainDiagonale[i]>0){
+    //         num1[0]=i;
+    //         num1[1]=mainDiagonale[i];
+    //         break;
+    //     }
+    // }
+
+    // for (i=6; i>=0; i--){
+    //     if(mainDiagonale[i]<0) {
+    //         num2[0]=i;
+    //         num2[1]=mainDiagonale[i];
+    //         break;
+    //     }
+    // }
+
+    // if (num1[0]&&num1[1]&&num2[0]&&num2[1]) {
+    //     mainDiagonale[num1[0]]=num2[1];
+    //     mainDiagonale[num2[0]]=num1[1];
+    // }
+
+    
+    // // printf("num1: %.2lf\nnum2:%.2lf\n", num1[1], num2[1]);
 }
 
 int main(void){
