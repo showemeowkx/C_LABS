@@ -2,12 +2,12 @@
 
 void linearSearch(double inputMatrix[7][7]){
     int i;
+    int j;
     int num1ID;
     int num2ID;
     double num1;
     double num2;
     double mainDiagonale[7]={};
-    // double outputMatrix[7][7]=inputMatrix[7][7];
 
     for (i=0; i<7; i++){
         if (inputMatrix[i][i]>0) {
@@ -27,10 +27,14 @@ void linearSearch(double inputMatrix[7][7]){
     if (num1&&num2) {
         inputMatrix[num1ID][num1ID]=num2;
         inputMatrix[num2ID][num2ID]=num1;
-        printf("\nmain diagonale:\n");
+        printf("\nOutput matrix\n----------------------------------------------");
         for (i=0; i<7; i++){
-            printf("%lf ", inputMatrix[i][i]);
+            printf("\n");
+            for(j=0;j<7;j++){
+                printf("%.2lf ", inputMatrix[i][j]);
+            }
         }
+        printf("\n----------------------------------------------");
     }
     else printf("error");
 
