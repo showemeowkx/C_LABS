@@ -6,6 +6,7 @@ int main(void){
     double num1=0;
     double num2=0;
 
+
     printf("Welcome! Enter the size of your matrix: ");
     scanf("%d", &n);
 
@@ -26,14 +27,6 @@ int main(void){
             }
         printf("\n");
         }
-
-        // double matrix[7][7]={{1,1,1,1,1,1,1},
-        //                     {1,1,1,1,1,1,1},
-        //                     {1,1,1,1,1,1,1},
-        //                     {1,1,1,1,1,1,1},
-        //                     {1,1,1,1,1,1,1},
-        //                     {1,1,1,1,1,1,1},
-        //                     {1,1,1,1,1,1,1}};
         
         for (i=0; i<=n-1; i++){
             if (matrix[i][i]>0){
@@ -51,7 +44,7 @@ int main(void){
             }
         }
 
-        if (num1!=0&&num2!=0) {
+        if (num1!=0&&num2!=0){
             matrix[num1ID][num1ID]=num2;
             matrix[num2ID][num2ID]=num1;
             printf("\nOutput matrix:\n");
