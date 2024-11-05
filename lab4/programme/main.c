@@ -5,14 +5,14 @@ void cursorMove(HANDLE console, char sym, int x, int y) {
     COORD nextMove = {x, y};
     SetConsoleCursorPosition(console, nextMove);
     printf("%c", sym);
-    Sleep(100);
+    Sleep(1);
 
     return;
 }
 
 int main(void) {
     int WIDTH = 80;
-    int HEIGHT = 25;
+    int HEIGHT = 24;
     int i = WIDTH-1;
     int j = HEIGHT-1;
     unsigned long int l;
@@ -27,7 +27,7 @@ int main(void) {
     FillConsoleOutputAttribute(hout, 0, 2000, clearPos, &l);
     cursorMove(hout, symbol, i, j);
 
-    while(i!=0 || j!=0) {
+    while(i>0 || j>0) {
         if (i>0) {
             i--;
             cursorMove(hout, symbol, i, j);
