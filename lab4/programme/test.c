@@ -1,50 +1,58 @@
 #include <stdio.h>
 #include <windows.h>
-#include <conio.h>
 
-int main() {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD def_pos = { 0, 29 };
-    SetConsoleCursorPosition(hConsole, def_pos);
-    printf("*");
-    _sleep(200);
-    for (int n = 1; n < 20; n++) {
-        if (n <= 15) {
-            COORD start_upper_diagonal = {def_pos.X + 2*n - 1, def_pos.Y };
-            SetConsoleCursorPosition(hConsole, start_upper_diagonal);
-            for (int i = 0; i < 2*n; i++) {
-                COORD upper_diagonal = {start_upper_diagonal.X - i, start_upper_diagonal.Y - i};
-                SetConsoleCursorPosition(hConsole, upper_diagonal);
-                printf("*");
-                _sleep(10);
-            }
-            COORD start_lower_diagonal = {def_pos.X, def_pos.Y - 2*n };
-            SetConsoleCursorPosition(hConsole, start_lower_diagonal);
-            for (int j = 0; j <= 2*n; j++) {
-                COORD lower_diagonal = {start_lower_diagonal.X + j, start_lower_diagonal.Y + j};
-                SetConsoleCursorPosition(hConsole, lower_diagonal);
-                printf("*");
-                _sleep(10);
-            }
+void cursorMove(HANDLE console, char sym, int x, int y) {
+    COORD nextMove = {x, y};
+    SetConsoleCursorPosition(console, nextMove);
+    printf("%c", sym);
+}
+
+int main(void) {
+    int WIDTH = 25;
+    int HEIGHT = 25;
+    int i = WIDTH - 1;
+    int j = HEIGHT - 1;
+
+    char symbol;
+    printf("Enter a symbol: ");
+    scanf(" %c", &symbol); // Додано пробіл для коректного зчитування символу
+
+    HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD written;
+    COORD clearPos = {0, 0};
+
+    // Очищення екрану
+    FillConsoleOutputAttribute(hout, 0, WIDTH * HEIGHT, clearPos, &written);
+
+    // Основний цикл для малювання шляху
+    while (i != 0 || j != 0) {
+        cursorMove(hout, symbol, i, j);
+        Sleep(50); // Встановлено більшу затримку для економії часу
+
+        if (i > 0) {
+            i--;
+        } else {
+            j--;
         }
-        else {
-            COORD start_upper_diagonal = {def_pos.X + 2*n - 1, def_pos.Y };
-            SetConsoleCursorPosition(hConsole, start_upper_diagonal);
-            for (int i = 0; i < 2*n; i++) {
-                COORD upper_diagonal = {start_upper_diagonal.X - i, start_upper_diagonal.Y - i};
-                SetConsoleCursorPosition(hConsole, upper_diagonal);
-                printf("*");
-                _sleep(200);
-            }
-            COORD start_lower_diagonal = {def_pos.X, def_pos.Y - 2*n };
-            SetConsoleCursorPosition(hConsole, start_lower_diagonal);
-            for (int j = 0; j <= 2*n; j++) {
-                COORD lower_diagonal = {start_lower_diagonal.X + j, start_lower_diagonal.Y + j};
-                SetConsoleCursorPosition(hConsole, lower_diagonal);
-                printf("*");
-                // _sleep(200);
-            }
+
+        // Малювання по діагоналі, коли це можливо
+        while (i < WIDTH - 1 && j > 0) {
+            cursorMove(hout, symbol, i, j);
+            i++;
+            j--;
+            Sleep(50); // Більша затримка тільки для кожного кроку
+        }
+        
+        // Якщо нижній край, йдемо на діагональний шлях вгору зліва
+        while (j < HEIGHT - 1 && i > 0) {
+            cursorMove(hout, symbol, i, j);
+            i--;
+            j++;
+            Sleep(50);
         }
     }
-    _sleep(10000);
+
+    // Очікування перед завершенням
+    Sleep(5000);
+    return 0;
 }
