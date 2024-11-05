@@ -29,41 +29,41 @@ int main(void) {
 
     while(i!=0 || j!=0) {
         if (i!=0) {
-            i-=1;
+            i--;
             cursorMove(hout, symbol, i, j);
-            while (i!=WIDTH-1 && j!=0) {
+            while (i<WIDTH-1 && j>0) {
+                i++;
+                j--;
                 cursorMove(hout, symbol, i, j);
-                i+=1;
-                j-=1;
             }
             if (j==0) {
-                i-=1;
+                i--;
                 cursorMove(hout, symbol, i, j);
             }
             else {
-                j-=1;
+                j--;
                 cursorMove(hout, symbol, i, j);
             }
-            while (j!=HEIGHT-1 && i!=0) {
-                    i-=1;
-                    j+=1;
-                    cursorMove(hout, symbol, i, j);
-                }
+            while (j<HEIGHT-1 && i>0) {
+                i--;
+                j++;
+                cursorMove(hout, symbol, i, j);
+            }
         }
         else if (i==0) {
-            j-=1;
+            j--;
             cursorMove(hout, symbol, i, j);
             while (j!=0) {
-                i+=1;
-                j-=1;
+                i++;
+                j--;
                 cursorMove(hout, symbol, i, j);
             }
             if (i!=0) {
-                i-=1;
+                i--;
                 cursorMove(hout, symbol, i, j);
                 while (i!=0) {
-                    i-=1;
-                    j+=1;
+                    i--;
+                    j++;
                     cursorMove(hout, symbol, i, j);
                 }
             }
