@@ -5,13 +5,13 @@ void cursorMove(HANDLE console, char sym, int x, int y) {
     COORD nextMove = {x, y};
     SetConsoleCursorPosition(console, nextMove);
     printf("%c", sym);
-    Sleep(1);
+    Sleep(100);
 
     return;
 }
 
 int main(void) {
-    int WIDTH = 25;
+    int WIDTH = 80;
     int HEIGHT = 25;
     int i = WIDTH-1;
     int j = HEIGHT-1;
@@ -28,45 +28,34 @@ int main(void) {
     cursorMove(hout, symbol, i, j);
 
     while(i!=0 || j!=0) {
-        if (i!=0) {
+        if (i>0) {
             i--;
             cursorMove(hout, symbol, i, j);
-            while (i<WIDTH-1 && j>0) {
-                i++;
-                j--;
-                cursorMove(hout, symbol, i, j);
-            }
-            if (j==0) {
-                i--;
-                cursorMove(hout, symbol, i, j);
-            }
-            else {
-                j--;
-                cursorMove(hout, symbol, i, j);
-            }
-            while (j<HEIGHT-1 && i>0) {
-                i--;
-                j++;
-                cursorMove(hout, symbol, i, j);
-            }
         }
-        else if (i==0) {
+        else {
             j--;
             cursorMove(hout, symbol, i, j);
-            while (j!=0) {
-                i++;
-                j--;
-                cursorMove(hout, symbol, i, j);
-            }
-            if (i!=0) {
-                i--;
-                cursorMove(hout, symbol, i, j);
-                while (i!=0) {
-                    i--;
-                    j++;
-                    cursorMove(hout, symbol, i, j);
-                }
-            }
+        }
+
+        while (i<WIDTH-1 && j>0) {
+            i++;
+            j--;
+            cursorMove(hout, symbol, i, j);
+        }
+
+        if (j==0) {
+            i--;
+            cursorMove(hout, symbol, i, j);
+        }
+        else {
+            j--;
+            cursorMove(hout, symbol, i, j);
+        }
+
+        while (j<HEIGHT-1 && i>0) {
+            i--;
+            j++;
+            cursorMove(hout, symbol, i, j);
         }
     }
 
