@@ -15,7 +15,7 @@ int main(void){
     if (n>=7&&n<=10){
         for(i=0; i<n; i++){
             for(j=0; j<n ; j++){
-                printf("Element [%d][%d]: ", i+1, j+1);
+                printf("Element [%d][%d]: ", i, j);
                 scanf("%lf", &matrix[i][j]);
             }
         }
