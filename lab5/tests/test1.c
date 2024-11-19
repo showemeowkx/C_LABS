@@ -5,28 +5,17 @@ int main(void) {
     int n, m, i, j, D, U, midIndex, foundValue, nullCouter = 0;
     double x;
 
-    printf("Enter the size of your matrix (2 values separated by space): <rows collumns>\n");
-    scanf("%d %d", &m, &n);
+    m = 7;
+    n = 7;
 
-    if ((m<7 || m>10) || (n<7 || n>10)) {
-        printf("Error! The size values should be between 7 and 10.");
-        return 0;
-    }
-    
-    double matrix[m][n];
+    double matrix[7][7]={{56,23,47,34,12,54,89},
+                        {45,20,45,30,11,49,75},
+                        {38,19,43,18,11,38,70},
+                        {27,19,33,15,10,35,61},
+                        {23,17,30,11,10,30,55},
+                        {19,15,18,8,6,19,39},
+                        {12,4,3,0,2,11,5}};
     int values[m];
-
-    for (i=0; i<n; i++) {
-        for (j=0; j<m; j++) {
-            printf("Enter a value for element [%d][%d]: ", j, i);
-            scanf("%lf", &matrix[j][i]);
-            if (j>0 && matrix[j][i]>matrix[j-1][i]) {
-                printf("Error! The values should be sorted in descending order.\n");
-                printf("Element's [%d][%d] value was changed to %.2lf!\n", j, i, matrix[j-1][i]);
-                matrix[j][i]=matrix[j-1][i];
-            }
-        }
-    }
 
     printf("Input matrix:\n");
     for (i=0; i<m; i++) {
@@ -62,6 +51,7 @@ int main(void) {
         if (foundValue==0) {
             if (matrix[D][i]==x) {
                 values[i] = D;
+                foundValue = 1;
             }
             else values[i] = m;
         }  
