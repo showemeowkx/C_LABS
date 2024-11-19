@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 
 int main(void) {
     int n, m, i, j, D, U, midIndex, foundValue, nullCouter = 0;
@@ -52,7 +51,7 @@ int main(void) {
                 values[i] = U;
             }
             else {
-                midIndex = floor((U+D)/2);
+                midIndex = (U+D)/2;
                 if (matrix[midIndex][i]>x) {
                     U = midIndex+1;
                 }
