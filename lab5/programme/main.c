@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(void) {
-    int n, m, i, j, D, U, midIndex, foundValue, nullCouter = 0;
+    int n, m, i, j, D, U, midIndex, foundValue, nullCounter = 0;
     double x;
 
     printf("Enter the size of your matrix (2 values separated by space): <rows collumns>\n");
@@ -13,7 +13,7 @@ int main(void) {
     }
     
     double matrix[m][n];
-    int values[m];
+    int values[n];
 
     for (i=0; i<n; i++) {
         for (j=0; j<m; j++) {
@@ -38,13 +38,10 @@ int main(void) {
     printf("Enter the required value: ");
     scanf("%lf", &x);
     
-    for (i=0; i<m; i++) {
-        if (foundValue==0) {
-            nullCouter+=1;
-        }
-        else foundValue = 0;
+    for (i=0; i<n; i++) {
         U = 0;
         D = m-1;
+        foundValue = 0;
         while (U<D && foundValue==0) {
             if (matrix[U][i]==x) {
                 foundValue = 1;
@@ -62,19 +59,20 @@ int main(void) {
             if (matrix[D][i]==x) {
                 values[i] = D;
             }
-            else values[i] = m;
+            else {
+                values[i] = m+1;
+                nullCounter++;
+            }
         }  
     }
 
-    if (nullCouter==m-1) {
-        printf("Error! There are no elements such as <%.2lf>.", x);
-    }
-    else {
+    if (nullCounter!=n){
         printf("The elements were found in the following positions:\n");
-        for (i=0; i<m; i++) {
-            if (values[i]<m) printf("[%d][%d] ", values[i], i);
+        for (i=0; i<n; i++) {
+            if (values[i]<m+1) printf("[%d][%d] ", values[i], i);
         }
     }
+    else printf("Error! There are no elements such as <%.2lf>.", x);
 
     return 0;
 }
