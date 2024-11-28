@@ -4,22 +4,16 @@ int main(void) {
     int n, m, i, j, k;
     double T;
 
-    printf("Enter the size of your matrix (2 values separated by space): <rows collumns>\n");
-    scanf("%d %d", &m, &n);
+    n=8;
+    m=7;
 
-    if ((m<7 || m>10) || (n<7 || n>10)) {
-        printf("Error! The size values should be between 7 and 10.");
-        return 0;
-    }
-
-    double matrix[m][n];
-
-    for (i=0; i<m; i++) {
-        for (j=0; j<n; j++) {
-            printf("Enter a value for element [%d][%d]: ", i, j);
-            scanf("%lf", &matrix[i][j]);
-        }
-    }
+    double matrix[7][8]={{10,9,8,7,6,5,4,3},
+                        {11,11,10,9,8,7,6,5},
+                        {15,12,10,7,4,2,1,1},
+                        {5,4,3,2,1,0,-1,-2},
+                        {10,5,2.5,1.25,0,-1.25,-2.5,-5},
+                        {5,5,5,5,5,5,1,1},
+                        {22,20,18,16,14,12,10,8}};
 
     printf("Input matrix:\n");
     for (i=0; i<m; i++) {
@@ -30,7 +24,7 @@ int main(void) {
     }
 
     for (i=0; i<m; i++){
-        for (j=1; j<n; j++) {
+        for (j=1; j<n; j++){
             T = matrix[i][j];
             k = j;
 
@@ -38,7 +32,6 @@ int main(void) {
                 matrix[i][k] = matrix[i][k-1];
                 k--;
             }
-
             matrix[i][k] = T;
         }
     }
