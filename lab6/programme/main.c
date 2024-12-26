@@ -1,8 +1,7 @@
 #include <stdio.h>
 
 int main(void) {
-    int n, m, i, j, k;
-    double T;
+    int n, m, i, j, k, T;
 
     printf("Enter the size of your matrix (2 values separated by space): <rows collumns>\n");
     scanf("%d %d", &m, &n);
@@ -12,19 +11,19 @@ int main(void) {
         return 0;
     }
 
-    double matrix[m][n];
+    int matrix[m][n];
 
     for (i=0; i<m; i++) {
         for (j=0; j<n; j++) {
             printf("Enter a value for element [%d][%d]: ", i, j);
-            scanf("%lf", &matrix[i][j]);
+            scanf("%d", &matrix[i][j]);
         }
     }
 
     printf("Input matrix:\n");
     for (i=0; i<m; i++) {
         for (j=0; j<n; j++) {
-            printf("%5.2lf\t", matrix[i][j]);
+            printf("%5d\t", matrix[i][j]);
         }
         printf("\n");
     }
@@ -46,7 +45,7 @@ int main(void) {
     printf("Sorted matrix:\n");
     for (i=0; i<m; i++) {
         for (j=0; j<n; j++) {
-            printf("%5.2lf\t", matrix[i][j]);
+            printf("%5d\t", matrix[i][j]);
         }
         printf("\n");
     }
